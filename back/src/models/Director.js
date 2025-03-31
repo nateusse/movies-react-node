@@ -8,7 +8,8 @@ const DirectorSchema = Schema({
     status: { 
         type: String,
         enum: ['Active', 'Inactive'], 
-        default: 'Inactive' },
+        default: 'Inactive'
+    },
     createdAt: { 
         type: Date, 
         default: Date.now 
@@ -18,4 +19,5 @@ const DirectorSchema = Schema({
         default: Date.now 
     }
 });
-module.exports.Director = model('Director', DirectorSchema);
+
+module.exports = model('Director', DirectorSchema);

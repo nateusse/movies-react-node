@@ -2,7 +2,6 @@ const Genre = require('../models/Genre');
 
 exports.createGenre = async (req, res) => {
     try {
-        // Verifica si el body tiene los datos requeridos
         const { name, status, description } = req.body;
 
         if (!name || !status) {
@@ -15,5 +14,19 @@ exports.createGenre = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(400).json({ message: 'Error creating genre', error });
+    }
+};
+
+
+
+exports.deleteGenre = async (req, res) => {
+    try {
+        const deletedGenre = await Genre.findByIdAndDelete(req.params.id);
+        if (!deletedGenre) {
+            return res.status(404).json({ message: 'Genre not found' });
+        }
+        res.json({ message: 'Genre deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting genre', error });
     }
 };

@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose');
 const TypeSchema = Schema({
     name: { 
         type: String, 
-        required: true 
+        enum: ['Serie', 'Movie'],
+        default: 'Serie'
     },
     createdAt: { 
         type: Date,
@@ -18,4 +19,5 @@ const TypeSchema = Schema({
     }
 });
 
-module.exports.Type = model('Type', TypeSchema);
+
+module.exports = model('Type', TypeSchema);
