@@ -1,0 +1,84 @@
+.type-container {
+    padding: 2rem;
+    color: white;
+  }
+  
+  .type-form {
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 10px #00000088;
+    max-width: 400px;
+  }
+  
+  .type-form h3 {
+    margin-top: 0;
+  }
+  
+  .type-form input,
+  .type-form textarea,
+  .type-form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+  }
+  
+  .type-form button {
+    background-color: #00bfff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .type-form button:hover {
+    background-color: #0099cc;
+  }
+  
+  .type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .type-card {
+    background-color: #222;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #00000044;
+  }
+  
+  .type-card h2 {
+    margin: 0 0 0.5rem;
+  }
+  
+  .type-card p {
+    margin: 0.5rem 0;
+  }
+  
+  .type-card input,
+  .type-card textarea {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .type-card button {
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .type-card button:hover {
+    background-color: #666;
+  }
+  

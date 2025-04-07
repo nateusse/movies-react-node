@@ -9,7 +9,8 @@ const ProducerSchema = Schema({
     status: { 
         type: String, 
         enum: ['Active', 'Inactive'],
-        default: 'Inactive' },
+        default: 'Inactive'
+    },
     createdAt: { 
         type: Date, 
         default: Date.now
@@ -25,4 +26,5 @@ const ProducerSchema = Schema({
         type: String 
     }
 });
-module.exports.Producer = model('Producer', ProducerSchema);
+
+module.exports = model('Producer', ProducerSchema);

@@ -6,7 +6,7 @@ const getConnection = async () => {
         const url = process.env.MONGO_URI;
 
         if (!url) {
-            throw new Error("⚠️ MONGO_URI no está definido en el archivo .env");
+            throw new Error("Mongo not recognizing .env");
         }
         
         await mongoose.connect(url, {
@@ -14,10 +14,10 @@ const getConnection = async () => {
             useUnifiedTopology: true
         });
 
-        console.log('✅ Conexión a MongoDB exitosa');
+        console.log('Connected MongoDB');
 
     } catch (error) {
-        console.error('❌ Error al conectar con MongoDB:', error);
+        console.error('Error mongoDB', error);
         process.exit(1); // Sale de la aplicación si la conexión falla
     }
 };

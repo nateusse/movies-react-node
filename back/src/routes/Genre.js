@@ -15,4 +15,9 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+router.put('/:id', genreController.updateGenre);
+
+router.delete('/:id', genreController.deleteGenre);
+
 module.exports = router;
