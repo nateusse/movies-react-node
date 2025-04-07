@@ -1,0 +1,110 @@
+.media-container {
+    padding: 2rem;
+    color: white;
+  }
+  
+  .media-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .media-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #000000aa;
+    transition: transform 0.2s ease;
+  }
+  
+  .media-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .media-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .media-info {
+    padding: 1rem;
+  }
+  
+  .media-year {
+    font-weight: normal;
+    color: #ccc;
+    font-size: 0.9rem;
+  }
+  
+  .media-synopsis {
+    font-style: italic;
+    color: #ddd;
+    margin-top: 0.5rem;
+  }
+  
+  .media-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .media-create-btn {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .media-create-btn:hover {
+    background-color: #218838;
+  }
+  
+  .media-delete-btn {
+    margin-top: 1rem;
+    background-color: #dc3545;
+    color: white;
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .media-delete-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .media-card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    padding: 0.4rem 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    background-color: #0d6efd;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  

@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const TypeSchema = Schema({
     name: { 
         type: String, 
-        enum: ['Serie', 'Movie'],
+        enum: ['Serie', 'Movie', "Show", "Short Film", "Musical", "Show", "Opera", "Cartooon", "Docuseries"],
         default: 'Serie'
     },
     createdAt: { 

@@ -20,17 +20,17 @@ exports.createMedia = async (req, res) => {
       typeName
     } = req.body;
 
-    if (!genre) return res.status(400).json({ message: `Genre '${genreName}' not found or inactive` });
-    if (!director) return res.status(400).json({ message: `Director '${directorName}' not found or inactive` });
-    if (!producer) return res.status(400).json({ message: `Producer '${producerName}' not found or inactive` });
-    if (!type) return res.status(400).json({ message: `Type '${typeName}' not found` });
     
 
-    // Look up the references by name
     const genre = await Genre.findOne({ name: genreName, status: 'Active' });
     const director = await Director.findOne({ name: directorName, status: 'Active' });
     const producer = await Producer.findOne({ name: producerName, status: 'Active' });
     const type = await Type.findOne({ name: typeName });
+
+    if (!genre) return res.status(400).json({ message: `Genre '${genreName}' not found or inactive` });
+    if (!director) return res.status(400).json({ message: `Director '${directorName}' not found or inactive` });
+    if (!producer) return res.status(400).json({ message: `Producer '${producerName}' not found or inactive` });
+    if (!type) return res.status(400).json({ message: `Type '${typeName}' not found` });
 
     if (!genre || !director || !producer || !type) {
       return res.status(400).json({
@@ -38,7 +38,6 @@ exports.createMedia = async (req, res) => {
       });
     }
 
-    // Create the Media with resolved ObjectIds
     const newMedia = new Media({
       serial,
       title,

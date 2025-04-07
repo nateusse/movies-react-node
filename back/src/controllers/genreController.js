@@ -30,3 +30,38 @@ exports.deleteGenre = async (req, res) => {
         res.status(500).json({ message: 'Error deleting genre', error });
     }
 };
+
+
+exports.updateGenre = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, status, description } = req.body;
+
+        if (!name && !status && !description) {
+            return res.status(400).json({
+                message: 'Debes proporcionar al menos un campo para actualizar: name, status o description.'
+            });
+        }
+
+        const updatedFields = {
+            ...(name && { name }),
+            ...(status && { status }),
+            ...(description && { description }),
+            updatedAt: new Date()
+        };
+
+        const updatedGenre = await Genre.findByIdAndUpdate(
+            id,
+            updatedFields,
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedGenre) {
+            return res.status(404).json({ message: 'Género no encontrado.' });
+        }
+
+        res.status(200).json(updatedGenre);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al actualizar el género.', error });
+    }
+};
