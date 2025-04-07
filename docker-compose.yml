@@ -1,0 +1,32 @@
+
+services:
+  backend:
+    build: ./back
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./back:/app
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/movies_db
+    command: sh -c "npm install && npm run seed && npm start"
+
+  frontend:
+    build: ./front
+    ports:
+      - '5173:80'
+    volumes:
+      - ./front:/app
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
