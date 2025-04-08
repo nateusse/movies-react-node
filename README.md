@@ -4,4 +4,4 @@
 - Front: React
 - Link app despleguada:
 
-Video explicativo back, front, despliegue: [aqui]()
+Video explicativo back, front: [aqui]()
