@@ -15,18 +15,20 @@ function EditMedia() {
   const [producers, setProducers] = useState([]);
   const [types, setTypes] = useState([]);
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/media/${id}`)
+    axios.get(`${API_BASE}/api/media/${id}`)
       .then(res => {
         setFormData(res.data);
-        setOriginalData(res.data); // Guardamos el original para comparar
+        setOriginalData(res.data);
       })
       .catch(err => console.error('Error fetching media:', err));
 
-    axios.get('http://localhost:5000/api/genres').then(res => setGenres(res.data));
-    axios.get('http://localhost:5000/api/directors').then(res => setDirectors(res.data));
-    axios.get('http://localhost:5000/api/producers').then(res => setProducers(res.data));
-    axios.get('http://localhost:5000/api/types').then(res => setTypes(res.data));
+    axios.get(`${API_BASE}/api/genres`).then(res => setGenres(res.data));
+    axios.get(`${API_BASE}/api/directors`).then(res => setDirectors(res.data));
+    axios.get(`${API_BASE}/api/producers`).then(res => setProducers(res.data));
+    axios.get(`${API_BASE}/api/types`).then(res => setTypes(res.data));
   }, [id]);
 
   const handleChange = e => {
@@ -36,7 +38,6 @@ function EditMedia() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // Crear un objeto solo con los campos modificados
     const updates = {};
     for (const key in formData) {
       if (formData[key] !== originalData[key]) {
@@ -49,7 +50,7 @@ function EditMedia() {
       return;
     }
 
-    axios.put(`http://localhost:5000/api/media/${id}`, updates)
+    axios.put(`${API_BASE}/api/media/${id}`, updates)
       .then(() => {
         alert('✅ Media actualizada');
         navigate('/media');

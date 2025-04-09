@@ -7,12 +7,15 @@ function Media() {
   const [medias, setMedias] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
+    console.log("🌍 API desde .env:", import.meta.env.VITE_API_URL);
     fetchMedia();
   }, []);
 
   const fetchMedia = () => {
-    axios.get('http://localhost:5000/api/media')
+    axios.get(`${API_BASE}/api/media`)
       .then(response => {
         setMedias(response.data);
         setLoading(false);
@@ -25,7 +28,7 @@ function Media() {
 
   const handleDelete = (id, title) => {
     if (window.confirm(`¿Eliminar "${title}"?`)) {
-      axios.delete(`http://localhost:5000/api/media/${id}`)
+      axios.delete(`${API_BASE}/api/media/${id}`)
         .then(() => {
           setMedias(prev => prev.filter(m => m._id !== id));
           alert('✅ Media eliminada');

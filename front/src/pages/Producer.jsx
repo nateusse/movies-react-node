@@ -7,8 +7,10 @@ function Producer() {
   const [editId, setEditId] = useState(null);
   const [editForm, setEditForm] = useState({ nombre: '', slogan: '', descripcion: '', status: 'Inactive' });
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    axios.get('http://localhost:5000/api/producers')
+    axios.get(`${API_BASE}/api/producers`)
       .then(res => setProducers(res.data))
       .catch(err => console.error('Error loading producers:', err));
   }, []);
@@ -28,7 +30,7 @@ function Producer() {
   };
 
   const handleUpdate = (id) => {
-    axios.put(`http://localhost:5000/api/producers/${id}`, editForm)
+    axios.put(`${API_BASE}/api/producers/${id}`, editForm)
       .then(res => {
         alert('✅ Productor actualizado');
         setProducers(prev => prev.map(p => (p._id === id ? res.data : p)));

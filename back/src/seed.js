@@ -172,15 +172,62 @@ const seedDatabase = async () => {
         director: directors.find(d => d.name === 'Quentin Tarantino')._id,
         producer: producers.find(p => p.name === 'Paramount Pictures')._id,
         type: types.find(t => t.name === 'Movie')._id,
-      }
+      },
+      {
+        serial: 'MOVFAIL1',
+        title: 'Fail, hola genre',
+        synopsis: 'Intentional fail for genre',
+        url: 'https://www.youtube.com/watch?v=s7EdQ4FqhY',
+        image: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg',
+        releaseYear: 1994,
+        genre: genres.find(g => g.name === 'Hola')?._id,
+        director: directors.find(d => d.name === 'Quentin Tarantino')?._id,
+        producer: producers.find(p => p.name === 'Paramount Pictures')?._id,
+        type: types.find(t => t.name === 'Movie')?._id,
+      },
+      {
+        serial: 'MOVFAIL2',
+        title: 'Fail hola director',
+        synopsis: 'Intentional fail for director',
+        url: 'https://www.youtube.com/watch?v=s7EdQ4FqhY',
+        image: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg',
+        releaseYear: 1994,
+        genre: genres.find(g => g.name === 'Drama')?._id,
+        director: directors.find(d => d.name === 'Hola')?._id,
+        producer: producers.find(p => p.name === 'Paramount Pictures')?._id,
+        type: types.find(t => t.name === 'Movie')?._id,
+      },
+      {
+        serial: 'MOVFAIL3',
+        title: 'Fail hola producer',
+        synopsis: 'Intentional fail for producer',
+        url: 'https://www.youtube.com/watch?v=s7EdQ4FqhY',
+        image: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg',
+        releaseYear: 1994,
+        genre: genres.find(g => g.name === 'Drama')?._id,
+        director: directors.find(d => d.name === 'Quentin Tarantino')?._id,
+        producer: producers.find(p => p.name === 'Hola')?._id,
+        type: types.find(t => t.name === 'Movie')?._id,
+      },
     ];
 
+
     for (const media of mediaToInsert) {
-      await Media.create(media);
-      console.log(`Inserted: ${media.title}`);
+      try {
+        if (!media.genre) throw new Error(`Género inválido para "${media.title}"`);
+        if (!media.director) throw new Error(`Director inválido para "${media.title}"`);
+        if (!media.producer) throw new Error(`Productor inválido para "${media.title}"`);
+        if (!media.type) throw new Error(`Tipo inválido para "${media.title}"`);
+
+        await Media.create(media);
+        console.log(` Insertado: ${media.title}`);
+      } catch (err) {
+        console.warn(` Advertencia: No se pudo insertar "${media.title}" - ${err.message}`);
+      }
     }
 
-    console.log('Seeding complete ✅');
+
+    console.log('Seeding complete ');
     process.exit();
 
   } catch (error) {

@@ -24,8 +24,10 @@ function Genre() {
     name: '', status: 'Inactive', description: ''
   });
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    axios.get('http://localhost:5000/api/genres')
+    axios.get(`${API_BASE}/api/genres`)
       .then(res => setGenres(res.data))
       .catch(err => console.error('Error cargando géneros', err));
   }, []);
@@ -44,7 +46,7 @@ function Genre() {
   };
 
   const handleUpdate = (id) => {
-    axios.put(`http://localhost:5000/api/genres/${id}`, formData)
+    axios.put(`${API_BASE}/api/genres/${id}`, formData)
       .then(res => {
         alert('✅ Género actualizado');
         setGenres(prev => prev.map(g => (g._id === id ? res.data : g)));

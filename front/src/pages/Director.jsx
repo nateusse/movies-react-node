@@ -7,8 +7,10 @@ function Director() {
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({ name: '', status: 'Inactive' });
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    axios.get('http://localhost:5000/api/directors')
+    axios.get(`${API_BASE}/api/directors`)
       .then(res => setDirectors(res.data))
       .catch(err => console.error('Error cargando directores', err));
   }, []);
@@ -26,7 +28,7 @@ function Director() {
   };
 
   const handleUpdate = (id) => {
-    axios.put(`http://localhost:5000/api/directors/${id}`, formData)
+    axios.put(`${API_BASE}/api/directors/${id}`, formData)
       .then(res => {
         alert('✅ Director actualizado');
         setDirectors(prev => prev.map(d => (d._id === id ? res.data : d)));

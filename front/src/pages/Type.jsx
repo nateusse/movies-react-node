@@ -14,12 +14,14 @@ function Type() {
   const [formData, setFormData] = useState({ name: '', description: '' });
   const [newType, setNewType] = useState({ name: '', description: '' });
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     fetchTypes();
   }, []);
 
   const fetchTypes = () => {
-    axios.get('http://localhost:5000/api/types')
+    axios.get(`${API_BASE}/api/types`)
       .then(res => setTypes(res.data))
       .catch(err => console.error('Error fetching types:', err));
   };
@@ -34,7 +36,7 @@ function Type() {
   };
 
   const handleUpdate = (id) => {
-    axios.put(`http://localhost:5000/api/types/${id}`, formData)
+    axios.put(`${API_BASE}/api/types/${id}`, formData)
       .then(() => {
         fetchTypes();
         setEditId(null);
@@ -47,7 +49,7 @@ function Type() {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/types', newType)
+    axios.post(`${API_BASE}/api/types`, newType)
       .then(() => {
         fetchTypes();
         setNewType({ name: '', description: '' });
